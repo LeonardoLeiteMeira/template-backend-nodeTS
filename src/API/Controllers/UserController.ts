@@ -19,7 +19,7 @@ class UserController {
     async create(request: Request, response: Response, next:NextFunction){
         try{
             const {Name, LastName, CPF} = request.body;
-            let user = new UserView(Name, LastName, CPF);
+            let user = new UserView({Name, LastName, CPF});
 
             let serviceRep = await UserService.createUser(user);
 

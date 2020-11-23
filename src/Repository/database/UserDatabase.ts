@@ -13,7 +13,7 @@ class UserDatabase{
         const repository = getRepository(UserEntity);
         
         try{
-            const userExist = await repository.findOne({where:user.CPF});
+            const userExist = await repository.findOne({where:{CPF:user.CPF}});
             if(!userExist){
                 let newUser = repository.create(user);
                 repository.save(newUser);
