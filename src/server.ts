@@ -1,6 +1,6 @@
-import express, {ErrorRequestHandler ,Request, Response, NextFunction} from 'express';
-import routes from "./API/Routes";
 import './Repository/connect';
+import express, {Request, Response, NextFunction} from 'express';
+import routes from "./API/routes";
 import bodyParser from "body-parser";
 import morgan from 'morgan';
 import cors from 'cors';
