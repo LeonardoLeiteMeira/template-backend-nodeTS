@@ -1,5 +1,6 @@
 import express, {ErrorRequestHandler ,Request, Response, NextFunction} from 'express';
 import routes from "./API/Routes";
+import './Repository/connect';
 import bodyParser from "body-parser";
 import morgan from 'morgan';
 import cors from 'cors';
@@ -24,4 +25,4 @@ app.use((request, response, next) => {
   next(error.stack);
 });
 
-app.listen(3333);
+app.listen(3333, ()=>console.log("Server started at 3333!!"));
