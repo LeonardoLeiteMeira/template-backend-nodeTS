@@ -1,4 +1,5 @@
 import { Column, Entity, PrimaryColumn } from "typeorm";
+import { v4 as uuidv4 } from 'uuid';
 
 @Entity("User")
 class UserEntity {
@@ -15,11 +16,12 @@ class UserEntity {
     @Column()
     CPF:string;
 
-    constructor(Id:string, Name:string, LastName:string, CPF:string){
-        this.Id = Id;
-        this.Name = Name;
-        this.LastName = LastName;
-        this.CPF = CPF;
+    constructor(props: Omit<UserEntity,'Id'>, id?:string){
+        Object.assign(this, props);
+        if(!id){
+            let uuid = uuidv4();
+            this.Id = uuid;
+        }
     }
 }
 

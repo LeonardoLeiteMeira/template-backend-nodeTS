@@ -4,7 +4,9 @@ class UserView{
     CPF:string
 
     constructor(props: UserView){
-        Object.assign(this, props);
+        this.Name = props.Name;
+        this.LastName = props.LastName;
+        this.CPF = props.CPF
     }
 }
 

@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import UserService from '../../Domain/UserService';
+import UserService from '../../Domain/services/UserService';
 import UserView from '../views/UserView';
 
 class UserController {
@@ -34,6 +34,28 @@ class UserController {
             next(ex);
         }
     }
+    async getUser(request: Request, response: Response, next:NextFunction){
+        try{
+            const {CPF} = request.body;
+            let serviceResp;
+            if(CPF){
+                serviceResp = await UserService.getUser(CPF);
+
+                if(serviceResp.status){
+                    return response.status(200).send(serviceResp.data);
+                }
+
+                return response.status(400).send(serviceResp.message);
+            }
+
+            return response.status(400).send("CPF is required");
+            
+
+        }catch(ex){
+            next(ex);
+        }
+    }
+
 }
 
 export default new UserController();

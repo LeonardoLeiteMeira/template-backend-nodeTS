@@ -4,15 +4,20 @@ import UserEntity from "../entities/UserEntity";
 
 class UserDatabase{
     async index(){
-        const repository = getRepository(UserEntity);
-        let users = await repository.find();
-        return users;
+        try{
+            const repository = getRepository(UserEntity);
+            let users = await repository.find();
+            return users;
+        }catch(er){
+            throw er;
+        }
     }
 
     async create(user: UserEntity){
-        const repository = getRepository(UserEntity);
-        
         try{
+            const repository = getRepository(UserEntity);
+        
+        
             const userExist = await repository.findOne({where:{CPF:user.CPF}});
             if(!userExist){
                 let newUser = repository.create(user);
@@ -24,6 +29,26 @@ class UserDatabase{
 
         }catch(ex){
             throw (ex);
+        }
+    }
+
+    async getUser(CPF:string){
+        try{
+            const repository = getRepository(UserEntity);
+            let user = await repository.findOne({where:{CPF:CPF}});
+            if(user){
+                return new Messenger({
+                    status:true,
+                    data:user
+                });
+            }
+            return new Messenger({
+                status:false,
+                message:"User not found"
+            });
+
+        }catch(er){
+            throw er
         }
     }
 }
