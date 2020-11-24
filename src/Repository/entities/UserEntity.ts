@@ -21,6 +21,8 @@ class UserEntity {
         if(!id){
             let uuid = uuidv4();
             this.Id = uuid;
+        }else{
+            this.Id = id
         }
     }
 }

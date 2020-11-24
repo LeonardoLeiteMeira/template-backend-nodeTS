@@ -1,6 +1,6 @@
-import UserView from "../../API/views/UserView";
-import UserEntity from "../../Repository/entities/UserEntity";
-import UserDatabase from "../../Repository/database/UserDatabase";
+import UserView from "../../../API/views/UserView";
+import UserEntity from "../../../Repository/entities/UserEntity";
+import UserDatabase from "../../../Repository/database/UserDatabase";
 
 class UserService{
     async createUser(userView:UserView){

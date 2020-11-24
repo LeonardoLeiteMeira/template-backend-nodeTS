@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import UserService from '../../Domain/services/UserService';
+import UserService from '../../Domain/services/UserService/UserService';
 import UserView from '../views/UserView';
 
 class UserController {
@@ -12,8 +12,7 @@ class UserController {
             
         }catch(ex){
             next(ex);
-        }
-        
+        } 
     }
 
     async create(request: Request, response: Response, next:NextFunction){
